@@ -36,6 +36,7 @@ RUN apt-get update \
         openssl \
         curl \
         msmtp-mta \
+        unzip \
         # Dependency of the PHP intl-extension
         libicu76 \
         # Dependency of the PHP gd-extension
@@ -160,9 +161,9 @@ RUN apt-get update \
         $PHPIZE_DEPS \
         vim \
         git \
-        unzip \
         sqlite3 \
         wait-for-it \
+        p7zip-full \
         # Needed for phive:
         gnupg \
     # Install Phive
