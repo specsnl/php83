@@ -18,7 +18,7 @@ ARG PHP_IGBINARY_VERSION=3.2.17RC1
 ARG PHP_REDIS_VERSION=6.3.0
 # Latest version of memcached-extension: https://pecl.php.net/package/memcached
 ARG PHP_MEMCACHED_VERSION=3.4.0
-# Latest version of amqp-extension: https://pecl.php.net/package/amqp
+# Latest version of amqp-extension: https://packagist.org/packages/php-amqp/php-amqp
 ARG PHP_AMQP_VERSION=2.2.0
 
 ENV SMTPHOST=mail
@@ -109,7 +109,7 @@ RUN apt-get update \
     && pie install --skip-enable-extension igbinary/igbinary:$PHP_IGBINARY_VERSION \
     && pecl install --configureoptions 'enable-redis-igbinary="yes"' "redis-$PHP_REDIS_VERSION" \
     && pecl install --configureoptions 'enable-memcached-igbinary="yes"' "memcached-$PHP_MEMCACHED_VERSION" \
-    && pecl install "amqp-$PHP_AMQP_VERSION" \
+    && pie install --skip-enable-extension php-amqp/php-amqp:$PHP_AMQP_VERSION \
     && docker-php-ext-enable --ini-name docker-php-ext-zz-custom.ini \
         event \
         igbinary \
