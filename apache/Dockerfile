@@ -154,8 +154,8 @@ FROM runtime AS builder
 ARG PHIVE_VERSION=0.16.0
 # Latest version of Composer: https://getcomposer.org/download
 ARG COMPOSER_VERSION=2.9.5
-# Latest version of Xdebug: https://github.com/xdebug/xdebug/tags or https://pecl.php.net/package/xdebug
-ARG XDEBUG_VERSION=3.5.0
+# Latest version of Xdebug: https://packagist.org/packages/xdebug/xdebug
+ARG XDEBUG_VERSION=3.5.1
 # Latest version of pcov: https://github.com/krakjoe/pcov/tags or https://pecl.php.net/package/pcov
 ARG PCOV_VERSION=1.0.12
 
@@ -180,9 +180,8 @@ RUN apt-get update \
     # Install Composer using Phive
     && phive install --global composer:$COMPOSER_VERSION --trust-gpg-keys CBB3D576F2A0946F \
     && rm -rf /root/.phive \
-    # Install Xdebug PHP extension
-    && pecl install "xdebug-$XDEBUG_VERSION" \
-    && docker-php-ext-enable xdebug \
+    # Install Xdebug and pcov PHP extensions
+    && pie install xdebug/xdebug:$XDEBUG_VERSION \
     # Install pcov PHP extension
     && pecl install "pcov-$PCOV_VERSION" \
     && docker-php-ext-enable pcov \
