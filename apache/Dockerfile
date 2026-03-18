@@ -10,8 +10,8 @@ ENV XDG_DATA_HOME=$XDG_DATA_HOME
 ARG XDG_CACHE_HOME=/cache
 ENV XDG_CACHE_HOME=$XDG_CACHE_HOME
 
-# Latest version of event-extension: https://pecl.php.net/package/event
-ARG PHP_EVENT_VERSION=3.1.4
+# Latest version of event-extension: https://packagist.org/packages/osmanov/pecl-event
+ARG PHP_EVENT_VERSION=3.1.5
 # Latest version of igbinary-extension: https://pecl.php.net/package/igbinary
 ARG PHP_IGBINARY_VERSION=3.2.16
 # Latest version of redis-extension: https://pecl.php.net/package/redis
@@ -104,7 +104,7 @@ RUN apt-get update \
         xsl \
         # Dependency of PHP event-extension
         sockets \
-    && pecl install "event-$PHP_EVENT_VERSION" \
+    && pie install --skip-enable-extension osmanov/pecl-event:$PHP_EVENT_VERSION \
     # Optional dependency of PHP redis-extension
     && pecl install "igbinary-$PHP_IGBINARY_VERSION" \
     && pecl install --configureoptions 'enable-redis-igbinary="yes"' "redis-$PHP_REDIS_VERSION" \
