@@ -1,6 +1,15 @@
 # Latest version of PHP base image: https://hub.docker.com/_/php/tags
 FROM php:8.3.30-apache-trixie AS runtime
 
+ARG XDG_CONFIG_HOME=/config
+ENV XDG_CONFIG_HOME=$XDG_CONFIG_HOME
+
+ARG XDG_DATA_HOME=/data
+ENV XDG_DATA_HOME=$XDG_DATA_HOME
+
+ARG XDG_CACHE_HOME=/cache
+ENV XDG_CACHE_HOME=$XDG_CACHE_HOME
+
 # Latest version of event-extension: https://pecl.php.net/package/event
 ARG PHP_EVENT_VERSION=3.1.4
 # Latest version of igbinary-extension: https://pecl.php.net/package/igbinary
