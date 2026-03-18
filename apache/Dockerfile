@@ -135,8 +135,12 @@ RUN apt-get update \
         libxslt1-dev \
         libmemcached-dev \
         zlib1g-dev \
-    # Cleanup
+    && mkdir -p \
+        $XDG_CONFIG_HOME \
+        $XDG_DATA_HOME \
+        $XDG_CACHE_HOME \
     && rm -rf /var/www/* \
+    # Cleanup
     && apt-get autoremove --assume-yes \
     && apt-get clean --assume-yes \
     && rm -rf /var/lib/apt/lists/* \
