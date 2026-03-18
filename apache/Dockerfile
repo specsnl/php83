@@ -14,7 +14,7 @@ ENV XDG_CACHE_HOME=$XDG_CACHE_HOME
 ARG PHP_EVENT_VERSION=3.1.5
 # Latest version of igbinary-extension: https://packagist.org/packages/igbinary/igbinary
 ARG PHP_IGBINARY_VERSION=3.2.17RC1
-# Latest version of redis-extension: https://pecl.php.net/package/redis
+# Latest version of redis-extension: https://packagist.org/packages/phpredis/phpredis
 ARG PHP_REDIS_VERSION=6.3.0
 # Latest version of memcached-extension: https://pecl.php.net/package/memcached
 ARG PHP_MEMCACHED_VERSION=3.4.0
@@ -107,7 +107,7 @@ RUN apt-get update \
     && pie install --skip-enable-extension osmanov/pecl-event:$PHP_EVENT_VERSION \
     # Optional dependency of PHP redis-extension
     && pie install --skip-enable-extension igbinary/igbinary:$PHP_IGBINARY_VERSION \
-    && pecl install --configureoptions 'enable-redis-igbinary="yes"' "redis-$PHP_REDIS_VERSION" \
+    && pie install --skip-enable-extension phpredis/phpredis:$PHP_REDIS_VERSION --enable-redis-igbinary \
     && pecl install --configureoptions 'enable-memcached-igbinary="yes"' "memcached-$PHP_MEMCACHED_VERSION" \
     && pie install --skip-enable-extension php-amqp/php-amqp:$PHP_AMQP_VERSION \
     && docker-php-ext-enable --ini-name docker-php-ext-zz-custom.ini \
