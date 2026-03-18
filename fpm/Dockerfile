@@ -1,8 +1,6 @@
 # Latest version of PHP base image: https://hub.docker.com/_/php/tags
 FROM php:8.3.30-fpm-trixie AS runtime
 
-ARG UNIQUE_ID_FOR_CACHEFROM=runtime
-
 # Latest version of event-extension: https://pecl.php.net/package/event
 ARG PHP_EVENT_VERSION=3.1.4
 # Latest version of igbinary-extension: https://pecl.php.net/package/igbinary
@@ -135,8 +133,6 @@ COPY files /
 
 FROM runtime AS builder
 
-ARG UNIQUE_ID_FOR_CACHEFROM=builder
-
 # Latest version of Phive: https://api.github.com/repos/phar-io/phive/releases/latest
 ARG PHIVE_VERSION=0.16.0
 # Latest version of Composer: https://getcomposer.org/download
@@ -186,8 +182,6 @@ FROM builder AS builder_nodejs
 ARG TARGETARCH
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-ARG UNIQUE_ID_FOR_CACHEFROM=builder_nodejs
 
 # Latest version of Node.js: https://nodejs.org
 ARG NODE_MAJOR=24
