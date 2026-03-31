@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 # check=error=true
 
-# Latest version of PHP base image: https://hub.docker.com/_/php/tags
-FROM php:8.3.30-fpm-trixie AS runtime
+# Latest version of FrankenPHP base image: https://hub.docker.com/r/dunglas/frankenphp/tags
+FROM dunglas/frankenphp:1.12.1-php8.3-trixie AS runtime
 
 ARG XDG_CONFIG_HOME=/config
 ENV XDG_CONFIG_HOME=$XDG_CONFIG_HOME
@@ -24,6 +24,10 @@ ARG PHP_AMQP_VERSION=2.2.0
 
 ENV SMTPHOST=mail
 ENV SMTPEHLO=localhost
+
+# Default to classic mode (no workers). To enable worker mode, set:
+# FRANKENPHP_CONFIG="worker /var/www/public/index.php"
+ENV FRANKENPHP_CONFIG=""
 
 WORKDIR /var/www
 
