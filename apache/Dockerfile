@@ -227,6 +227,7 @@ RUN apt-get update \
     && npm uninstall --global npm \
     && corepack install --global npm@11.x yarn@4.x pnpm@10.x \
     && corepack enable npm yarn pnpm \
+    # Cleanup
     && apt-get autoremove --assume-yes \
     && apt-get clean --assume-yes \
     && rm -rf /var/lib/apt/lists/* \
