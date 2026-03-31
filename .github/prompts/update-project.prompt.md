@@ -197,3 +197,15 @@ to date.
 - The working tree should be clean.
 - Push the branch to the remote and create a pull request for review and merging targeting `origin/main`.
   The title should be `chore: Update dependencies`.
+- Add a Pull Request description that lists the changes based on the commits that were made. Stick to the
+  commit messages but remove the "chore" prefix. For example:
+
+```md
+Updated the following dependencies:
+
+- Updated PHP base image versions
+- Updated Pie version
+- Updated PHP runtime extension versions
+- Updated builder stage tool versions
+- Updated GitHub Actions versions
+```
