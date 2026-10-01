@@ -2,10 +2,10 @@
 # check=error=true
 
 # Latest version of php-extension-installer: https://hub.docker.com/r/mlocati/php-extension-installer/tags
-FROM mlocati/php-extension-installer:2.11.30 AS php_extension_installer
+FROM mlocati/php-extension-installer:2.12.0 AS php_extension_installer
 
 # Latest version of PHP base image: https://hub.docker.com/_/php/tags
-FROM php:8.3.33-fpm-trixie AS runtime
+FROM php:8.3.35-fpm-trixie AS runtime
 
 ARG DEBIAN_FRONTEND=noninteractive
 
